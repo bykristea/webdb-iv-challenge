@@ -1,15 +1,16 @@
-exports.up = async function(knex) {
-    await knex.schema.createTable('ingredient_lists', (tbl) => {
-        tbl.increments('id');
-        tbl.float('ingredient_amount').unsigned();
 
-        tbl.integer('ingredient_id').unsigned();
-        tbl.foreign('ingredient_id').references('id').on('ingredients');
-        tbl.integer('recipes_id').unsigned();
-        tbl.foreign('recipes_id').references('id').on('recipes');
+
+exports.up = async function(knex) {
+    await knex.schema.createTable('instruction_lists', (tbl) => {
+        tbl.increments('id');
+        tbl.integer('instruction_step').notNullable();
+        tbl.string('instructions').notNullable();
+
+        tbl.integer('recipe_id').unsigned();
+        tbl.foreign('recipe_id').references('id').on('recipes');
     });
 };
 
 exports.down = async function(knex) {
-    await knex.schema.dropTableIfExists('ingredients_list');
+    await knex.schema.dropTableIfExists('instruction_lists');
 };
