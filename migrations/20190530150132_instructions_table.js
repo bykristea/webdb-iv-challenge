@@ -1,6 +1,6 @@
 exports.up = async function(knex) {
     await knex.schema.createTable('ingredient_lists', (tbl) => {
-        tbl.increments();
+        tbl.increments('id');
         tbl.float('ingredient_amount').unsigned();
 
         tbl.integer('ingredient_id').unsigned();

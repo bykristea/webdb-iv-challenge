@@ -1,6 +1,6 @@
 exports.up = async function(knex) {
     await knex.schema.createTable('instruction_lists', (tbl) => {
-        tbl.increments();
+        tbl.increments('id');
         tbl.integer('instruction_step').notNullable();
         tbl.string('instructions').notNullable();
 
